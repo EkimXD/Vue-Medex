@@ -30,8 +30,8 @@
           <span v-if="hover">Configuracion</span>
         </div>
       </router-link>
-      <b-button @click="logout" class="navbar-item" >
-        <i class="fas fa-sign-out-alt"></i>
+      <b-button @click="logout" class="navbar-item btn btn-danger" >
+        <i class="fas fa-sign-out-alt padding-top-10"></i>
         <div class="navbar-item-text">
           <span v-if="hover">Salir</span>
         </div>
@@ -118,6 +118,10 @@ $navbar_text:#bbbbbb;
 
     .navbar-item-icon{
       padding-top: 5px;
+    }
+    .padding-top-10{
+      padding-top: 7px;
+      padding-left: 4px;
     }
 
     &.router-link-exact-active {

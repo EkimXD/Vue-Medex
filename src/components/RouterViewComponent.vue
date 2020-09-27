@@ -14,16 +14,15 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .container {
-  background-color: salmon;
   display: inline;
   position: relative;
   // left: 86px;
   height: 100%;
 
-  #router-view {
-    width: -86px;
-  }
+  // #router-view {
+  //   width: -86px;
+  // }
 }
 </style>
