@@ -3,7 +3,12 @@
     <div class="col-sm-7 paciente">
       <div class="container">
         <h3>{{ paciente.nombre }} {{ paciente.apellido }}</h3>
-        <button type="button" class="btn btn-success">Editar</button>
+        <CrearEditarPaciente
+          buttonText="Editar paciente"
+          :edit="true"
+          :paciente="paciente"
+        ></CrearEditarPaciente>
+        <b-button @click="borrar" variant="danger"><b-spinner v-if="spiner" small label="Spinning"></b-spinner>Eliminar</b-button>
 
         <h6>Ciudad</h6>
         <h4>{{ paciente.ciudad }}</h4>
@@ -14,7 +19,7 @@
     <div class="col-sm-5 citas">
       <div class="container">
         <h3>Citas Agendadas</h3>
-        <button type="button" class="btn btn-success">Nueva Cita</button>
+        <CrearCita :idpaciente="$route.params.id"></CrearCita>
 
         <table class="table">
           <tr>
@@ -33,6 +38,8 @@
 
 <script>
 import { db } from "../firebase";
+import CrearEditarPaciente from "@/components/CrearEditarPaciente";
+import CrearCita from '@/components/CrearCita'
 
 export default {
   name: "Paciente",
@@ -40,7 +47,34 @@ export default {
     return {
       paciente: {},
       citas: [],
+      spiner:false,
     };
+  },
+  components: {
+    CrearEditarPaciente,
+    CrearCita,
+  },
+  methods:{
+    async borrar(){
+      this.spiner=true;
+
+      await db.collection('paciente').doc(this.$route.params.id).delete();
+      await db.collection('cita').where('idpaciente',"==",this.$route.params.id).get()
+      .then(
+        (snapshot)=>{
+          snapshot.forEach(doc=>{
+            db.collection('cita').doc(doc.id).delete();
+          })
+        }
+      ).catch(
+        (error)=>{
+          console.log(error);
+        }
+      )
+
+      this.spiner=false;
+      this.$router.push('/pacientes')
+    }
   },
   mounted() {
     db.collection("paciente")

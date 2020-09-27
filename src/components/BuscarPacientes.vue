@@ -3,7 +3,8 @@
     <div class="header">
       <div class="element-header">
         <h1>Pacientes</h1>
-        <button type="button" class="btn btn-success">Nuevo paciente</button>
+        <!-- <button type="button" class="btn btn-success">Nuevo paciente</button> -->
+        <CrearEditarPaciente buttonText="Nuevo paciente" :edit="false"></CrearEditarPaciente>
         <h5>Buscar</h5>
       </div>
       <b-form @submit="buscarPacientes" inline>
@@ -41,6 +42,7 @@
 <script>
 import RowUsusario from "./RowUsuario";
 import { db } from "../firebase";
+import CrearEditarPaciente from '@/components/CrearEditarPaciente'
 
 export default {
   name: "BuscarPAcientes",
@@ -52,6 +54,7 @@ export default {
   },
   components: {
     RowUsusario,
+    CrearEditarPaciente
   },
   methods: {
     buscarPacientes(event) {

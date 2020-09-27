@@ -5,13 +5,15 @@
     <td>{{paciente.apellido}}</td>
     <td>{{paciente.ciudad}}</td>
     <td class="button-elements">
-        <button type="button" class="btn btn-primary" >Agregar Cita</button>
+        <CrearCita :idpaciente="paciente.id"></CrearCita>
         <button type="button" class="btn btn-danger margin-left" @click="irPaciente">Ver paciente</button>
     </td>
   </tr>
 </template>
 
 <script>
+import CrearCita from '@/components/CrearCita'
+
 export default {
   name: "RowUsuario",
   props: ["numero", "paciente"],
@@ -20,6 +22,9 @@ export default {
           console.log('llega')
           this.$router.push('/paciente/'+this.paciente.id)
       }
+  },
+  components:{
+    CrearCita
   }
 };
 </script>
