@@ -39,7 +39,7 @@
 <script>
 import { db } from "../firebase";
 import CrearEditarPaciente from "@/components/CrearEditarPaciente";
-import CrearCita from '@/components/CrearCita'
+import CrearCita from '@/components/CrearCita';
 
 export default {
   name: "Paciente",

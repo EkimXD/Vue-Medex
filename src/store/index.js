@@ -7,7 +7,7 @@ import { db } from "../firebase";
 
 export default new Vuex.Store({
   state: {
-    logged:true,
+    logged:false,
     user:null,
     form: {
       nombre: "",
